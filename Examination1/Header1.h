@@ -4,7 +4,7 @@ using namespace std;
 struct warehouse {
     Product products[WarehouseMaxProducts];
     int count;
-    void addProduct(warehouse warehouse) {
+    void addProduct(warehouse& warehouse) {
         if (warehouse.count < WarehouseMaxProducts) {
             Product newProduct;
             cout << "Введіть назву продукту: ";
@@ -28,7 +28,7 @@ struct warehouse {
         }
     }
 
-    void removeProduct(warehouse warehouse, const char* name) {
+    void removeProduct(warehouse& warehouse, const char* name) {
         int removedCount = 0;
         for (int i = 0; i < warehouse.count; ++i) {
             if (strcmp(warehouse.products[i].name, name) == 0) {
@@ -53,7 +53,7 @@ struct warehouse {
         cout << "-----------------------" << endl;
     }
 
-    void displayProductsByCriterion(const warehouse warehouse, const char* criterion, const char* value) {
+    void displayProductsByCriterion(const warehouse& warehouse, const char* criterion, const char* value) {
         cout << "Продукти, які відповідають критерію " << criterion << " зі значенням " << value << ": " << endl;
         for (int i = 0; i < warehouse.count; ++i) {
             const Product& product = warehouse.products[i];
@@ -66,7 +66,7 @@ struct warehouse {
             else if (strcmp(criterion, "category") == 0 && strcmp(product.category, value) == 0) {
                 displayProduct(product);
             }
-            else if (strcmp(criterion, "price") == 0 && to_string(product.price) == value) {
+            else if (strcmp(criterion, "price") == 0 && product.price == stod(value)) {
                 displayProduct(product);
             }
             else if (strcmp(criterion, "arrivalDate") == 0 && strcmp(product.arrivalDate, value) == 0) {
@@ -78,7 +78,7 @@ struct warehouse {
         }
     }
 
-    void SortByPrice(warehouse warehouse) {
+    void SortByPrice(warehouse& warehouse) {
         for (int i = 0; i < warehouse.count; i++) {
             for (int j = 0; j < warehouse.count - i - 1; j++) {
                 if (warehouse.products[j].price > warehouse.products[j + 1].price) {
@@ -90,7 +90,7 @@ struct warehouse {
         }
     }
 
-    void SortByCategory(warehouse warehouse) {
+    void SortByCategory(warehouse& warehouse) {
         for (int i = 0; i < warehouse.count; i++) {
             for (int j = 0; j < warehouse.count - i - 1; j++) {
                 if (strcmp(warehouse.products[j].category, warehouse.products[j + 1].category) > 0) {
@@ -102,7 +102,7 @@ struct warehouse {
         }
     }
 
-    void replaceProductByName(warehouse warehouse, const char* name) {
+    void replaceProductByName(warehouse& warehouse, const char* name) {
         for (int i = 0; i < warehouse.count; ++i) {
             if (strcmp(warehouse.products[i].name, name) == 0) {
                 Product newProduct;
@@ -128,7 +128,7 @@ struct warehouse {
         cout << "Продукт із назвою \"" << name << "\" не знайдено на складі.\n";
     }
 
-    void searchProduct(warehouse warehouse, const char* criterion, const char* value) {
+    void searchProduct(warehouse& warehouse, const char* criterion, const char* value) {
         using namespace std;
         cout << "Продукти, які відповідають критерію " << criterion << " зі значенням " << value << ":";
         for (int i = 0; i < warehouse.count; ++i) {
