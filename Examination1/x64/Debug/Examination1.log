@@ -1,2 +1,3 @@
 ﻿  Examination1.cpp
+C:\Users\User\source\repos\Examination1\Examination1\Header1.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
   Examination1.vcxproj -> C:\Users\User\source\repos\Examination1\x64\Debug\Examination1.exe
