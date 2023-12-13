@@ -2,8 +2,8 @@
 #include "Header.h";
 using namespace std;
 struct warehouse {
+    int count = 0;
     Product products[WarehouseMaxProducts];
-    int count;
     void addProduct(warehouse& warehouse) {
         if (warehouse.count < WarehouseMaxProducts) {
             Product newProduct;
